@@ -3,9 +3,7 @@ const blog = require("../models/blog")
 const createBlog = async(req, res) => {
     try{
         const requestBody= req.body;
-        console.log("------------>>>>>>>>>>>>>>",requestBody);
-        const savedBlog = await blog.create(requestBody);
-        console.log("this is the saved blog in db >>>>>>>>>>>>>>>",savedBlog);
+        await blog.create(requestBody);
         res.status(201).json("blog is posted successfully");
     } catch(err){
         console.log(err)
@@ -13,6 +11,17 @@ const createBlog = async(req, res) => {
     }
 }
 
+const getAllBlog = async (req, res) => {
+    try {
+        const allBlogs = await blog.find();
+        res.status(200).json(allBlogs);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
 module.exports = {
-    createBlog
+    createBlog,
+    getAllBlog
 }
