@@ -13,7 +13,7 @@ app.use(loadRoutes)
 
 app.use('*', (req, res, next) => {
     console.log('Please provide currect url')
-    res.status(404).send('please provide currect url')
+    res.status(404).send('please provide correct url')
     next()
 })
 
